@@ -1,0 +1,2 @@
+ HTTP:  https://eu1.prisma.sh/angela-hughes-898ab7/hackernews-api/dev
+  WS:    wss://eu1.prisma.sh/angela-hughes-898ab7/hackernews-api/dev
