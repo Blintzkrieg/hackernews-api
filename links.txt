@@ -1,2 +1,119 @@
+ 
+ ###links
+
+ #Sandbox
  HTTP:  https://eu1.prisma.sh/angela-hughes-898ab7/hackernews-api/dev
   WS:    wss://eu1.prisma.sh/angela-hughes-898ab7/hackernews-api/dev
+
+  #Prisma cloud DB
+  https://app.prisma.io/angela-hughes-898ab7/services/prisma-eu1/hackernews-api/dev/databrowser
+
+
+  ###Sandbox Queries
+
+  query {
+  feed (filter: "prisma", orderBy: url_ASC) {
+    count
+    links {
+      id
+      description
+      url
+    }
+  }
+}
+
+
+query {
+  feed(orderBy: url_DESC) {
+    id
+    description
+    url
+  }
+}
+
+
+query {
+  feed (skip:1, first: 15){
+    id
+    description
+    url
+  }
+}
+
+
+query {
+  feed(filter:"QL") {
+    id
+  	description
+    url
+    postedBy {
+      id
+      name
+    }
+  }
+}
+
+
+
+##Mutation query
+mutation {
+  vote(linkId: "cjwkw69azr4kb0b05yoz66wdz") {
+    link {
+      url
+      description
+    }
+    user {
+      name
+      email
+    }
+  }
+}
+
+#HTTP Headers
+{
+  "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjandreXh5enFzODJyMGIwNXo4bWN2Nm83IiwiaWF0IjoxNTU5ODQ0MTYzfQ.W-6VVdWZHEkzw4yxfBgl19pjo8AJJ5uRZEL3AX_fA64"
+}
+
+
+subscription {
+  newVote {
+    id
+    link {
+      url
+      description
+    }
+    user {
+      name
+      email
+    }
+  }
+}
+
+
+mutation {
+  signup(
+    name: "Mike"
+    email: "mike@prisma.io"
+    password: "graphql"
+  ) {
+    token
+    user {
+      id
+    }
+  }
+}
+
+
+subscription {
+  newVote {
+    id
+    link {
+      url
+      description
+    }
+    user {
+      name
+      email
+    }
+  }
+}
