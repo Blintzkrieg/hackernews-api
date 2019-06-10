@@ -1,5 +1,6 @@
 type Link {
   id: ID! @id
+  createdAt: DateTime!
   description: String!
   url: String!
   postedBy: User
