@@ -6,6 +6,7 @@ const User = require('./resolvers/User')
 const Link = require('./resolvers/Link')
 const Subscription = require('./resolvers/Subscription')
 const Vote = require('./resolvers/Vote')
+const cors = require('cors');
 
 const resolvers = {
   Query,
@@ -26,5 +27,7 @@ const server = new GraphQLServer({
     }
   },
 })
+
+server.use(cors());
 
 server.start(() => console.log(`Server is running on http://localhost:4000`))
