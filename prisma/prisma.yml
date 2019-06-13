@@ -1,6 +1,6 @@
 # The HTTP endpoint for your Prisma API
 #endpoint: ''
-endpoint: https://eu1.prisma.sh/angela-hughes-898ab7/hackernews-api/dev
+endpoint: http://192.168.99.100:4466
 
 
 # Points to the file that contains your datamodel

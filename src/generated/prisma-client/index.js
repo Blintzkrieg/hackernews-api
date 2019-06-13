@@ -20,6 +20,6 @@ var models = [
 exports.Prisma = prisma_lib_1.makePrismaClientClass({
   typeDefs,
   models,
-  endpoint: `https://eu1.prisma.sh/angela-hughes-898ab7/hackernews-api/dev`
+  endpoint: `http://192.168.99.100:4466`
 });
 exports.prisma = new exports.Prisma();
