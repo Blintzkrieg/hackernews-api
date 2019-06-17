@@ -21,10 +21,22 @@ type User {
   links: [Link!]!
 }
 
+type Root {
+  id: ID!
+  root: String!
+  number: String!
+  salish: String!
+  nicodemus: String!
+  english: String!
+  active: String!
+  prevId: ID!
+  user: User!
+}
 
 type Query {
   info: String!
   feed(filter: String, skip: Int, first: Int, orderBy: LinkOrderByInput): Feed!
+  roots: [Root!]
 }
 
 type Mutation {
@@ -32,6 +44,7 @@ type Mutation {
   signup(email: String!, password: String!, name: String!): AuthPayload
   login(email: String!, password: String!): AuthPayload
   vote(linkId: ID!): Vote
+  addRoot(root: String!, number: String!, salish: String!, nicodemus: String!, english: String!, active: String!, prevId: String!): Root
 }
 
 type Link {

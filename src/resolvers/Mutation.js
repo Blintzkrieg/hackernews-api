@@ -59,10 +59,26 @@ async function vote(parent, args, context, info) {
   })
 }
 
+async function addRoot(parent, args, context, info) {
+  const userId = getUserId(context)
+
+  return context.prisma.createRoot({
+    root: args.root,
+    number: args.number,
+    salish: args.salish,
+    nicodemus: args.nicodemus,
+    english: args.english,
+    active: args.active,
+    prevId: "",
+    user: { connect: { id: userId } },
+  })
+}
+
 
 module.exports = {
   signup,
   login,
   post,
   vote,
+  addRoot,
 }

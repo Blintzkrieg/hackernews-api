@@ -4,6 +4,7 @@ const Query = require('./resolvers/Query')
 const Mutation = require('./resolvers/Mutation')
 const User = require('./resolvers/User')
 const Link = require('./resolvers/Link')
+const Root = require('./resolvers/Root')
 const Subscription = require('./resolvers/Subscription')
 const Vote = require('./resolvers/Vote')
 const cors = require('cors');
@@ -13,6 +14,7 @@ const resolvers = {
   Mutation,
   User,
   Link,
+  Root,
   Subscription,
   Vote
 }

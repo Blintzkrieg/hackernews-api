@@ -21,3 +21,15 @@ type Vote {
   link: Link!
   user: User!
 }
+
+type Root {
+  id: ID! @id
+  root: String!
+  number: String!
+  salish: String!
+  nicodemus: String!
+  english: String!
+  active: String!
+  prevId: ID! @unique
+  user: User!
+}

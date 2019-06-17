@@ -7,6 +7,10 @@ module.exports = {
   count: Int!
 }
 
+type AggregateRoot {
+  count: Int!
+}
+
 type AggregateUser {
   count: Int!
 }
@@ -307,6 +311,12 @@ type Mutation {
   upsertLink(where: LinkWhereUniqueInput!, create: LinkCreateInput!, update: LinkUpdateInput!): Link!
   deleteLink(where: LinkWhereUniqueInput!): Link
   deleteManyLinks(where: LinkWhereInput): BatchPayload!
+  createRoot(data: RootCreateInput!): Root!
+  updateRoot(data: RootUpdateInput!, where: RootWhereUniqueInput!): Root
+  updateManyRoots(data: RootUpdateManyMutationInput!, where: RootWhereInput): BatchPayload!
+  upsertRoot(where: RootWhereUniqueInput!, create: RootCreateInput!, update: RootUpdateInput!): Root!
+  deleteRoot(where: RootWhereUniqueInput!): Root
+  deleteManyRoots(where: RootWhereInput): BatchPayload!
   createUser(data: UserCreateInput!): User!
   updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
   updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
@@ -341,6 +351,9 @@ type Query {
   link(where: LinkWhereUniqueInput!): Link
   links(where: LinkWhereInput, orderBy: LinkOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Link]!
   linksConnection(where: LinkWhereInput, orderBy: LinkOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): LinkConnection!
+  root(where: RootWhereUniqueInput!): Root
+  roots(where: RootWhereInput, orderBy: RootOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Root]!
+  rootsConnection(where: RootWhereInput, orderBy: RootOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): RootConnection!
   user(where: UserWhereUniqueInput!): User
   users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
   usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
@@ -350,8 +363,237 @@ type Query {
   node(id: ID!): Node
 }
 
+type Root {
+  id: ID!
+  root: String!
+  number: String!
+  salish: String!
+  nicodemus: String!
+  english: String!
+  active: String!
+  prevId: ID!
+  user: User!
+}
+
+type RootConnection {
+  pageInfo: PageInfo!
+  edges: [RootEdge]!
+  aggregate: AggregateRoot!
+}
+
+input RootCreateInput {
+  id: ID
+  root: String!
+  number: String!
+  salish: String!
+  nicodemus: String!
+  english: String!
+  active: String!
+  prevId: ID!
+  user: UserCreateOneInput!
+}
+
+type RootEdge {
+  node: Root!
+  cursor: String!
+}
+
+enum RootOrderByInput {
+  id_ASC
+  id_DESC
+  root_ASC
+  root_DESC
+  number_ASC
+  number_DESC
+  salish_ASC
+  salish_DESC
+  nicodemus_ASC
+  nicodemus_DESC
+  english_ASC
+  english_DESC
+  active_ASC
+  active_DESC
+  prevId_ASC
+  prevId_DESC
+}
+
+type RootPreviousValues {
+  id: ID!
+  root: String!
+  number: String!
+  salish: String!
+  nicodemus: String!
+  english: String!
+  active: String!
+  prevId: ID!
+}
+
+type RootSubscriptionPayload {
+  mutation: MutationType!
+  node: Root
+  updatedFields: [String!]
+  previousValues: RootPreviousValues
+}
+
+input RootSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: RootWhereInput
+  AND: [RootSubscriptionWhereInput!]
+  OR: [RootSubscriptionWhereInput!]
+  NOT: [RootSubscriptionWhereInput!]
+}
+
+input RootUpdateInput {
+  root: String
+  number: String
+  salish: String
+  nicodemus: String
+  english: String
+  active: String
+  prevId: ID
+  user: UserUpdateOneRequiredInput
+}
+
+input RootUpdateManyMutationInput {
+  root: String
+  number: String
+  salish: String
+  nicodemus: String
+  english: String
+  active: String
+  prevId: ID
+}
+
+input RootWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  root: String
+  root_not: String
+  root_in: [String!]
+  root_not_in: [String!]
+  root_lt: String
+  root_lte: String
+  root_gt: String
+  root_gte: String
+  root_contains: String
+  root_not_contains: String
+  root_starts_with: String
+  root_not_starts_with: String
+  root_ends_with: String
+  root_not_ends_with: String
+  number: String
+  number_not: String
+  number_in: [String!]
+  number_not_in: [String!]
+  number_lt: String
+  number_lte: String
+  number_gt: String
+  number_gte: String
+  number_contains: String
+  number_not_contains: String
+  number_starts_with: String
+  number_not_starts_with: String
+  number_ends_with: String
+  number_not_ends_with: String
+  salish: String
+  salish_not: String
+  salish_in: [String!]
+  salish_not_in: [String!]
+  salish_lt: String
+  salish_lte: String
+  salish_gt: String
+  salish_gte: String
+  salish_contains: String
+  salish_not_contains: String
+  salish_starts_with: String
+  salish_not_starts_with: String
+  salish_ends_with: String
+  salish_not_ends_with: String
+  nicodemus: String
+  nicodemus_not: String
+  nicodemus_in: [String!]
+  nicodemus_not_in: [String!]
+  nicodemus_lt: String
+  nicodemus_lte: String
+  nicodemus_gt: String
+  nicodemus_gte: String
+  nicodemus_contains: String
+  nicodemus_not_contains: String
+  nicodemus_starts_with: String
+  nicodemus_not_starts_with: String
+  nicodemus_ends_with: String
+  nicodemus_not_ends_with: String
+  english: String
+  english_not: String
+  english_in: [String!]
+  english_not_in: [String!]
+  english_lt: String
+  english_lte: String
+  english_gt: String
+  english_gte: String
+  english_contains: String
+  english_not_contains: String
+  english_starts_with: String
+  english_not_starts_with: String
+  english_ends_with: String
+  english_not_ends_with: String
+  active: String
+  active_not: String
+  active_in: [String!]
+  active_not_in: [String!]
+  active_lt: String
+  active_lte: String
+  active_gt: String
+  active_gte: String
+  active_contains: String
+  active_not_contains: String
+  active_starts_with: String
+  active_not_starts_with: String
+  active_ends_with: String
+  active_not_ends_with: String
+  prevId: ID
+  prevId_not: ID
+  prevId_in: [ID!]
+  prevId_not_in: [ID!]
+  prevId_lt: ID
+  prevId_lte: ID
+  prevId_gt: ID
+  prevId_gte: ID
+  prevId_contains: ID
+  prevId_not_contains: ID
+  prevId_starts_with: ID
+  prevId_not_starts_with: ID
+  prevId_ends_with: ID
+  prevId_not_ends_with: ID
+  user: UserWhereInput
+  AND: [RootWhereInput!]
+  OR: [RootWhereInput!]
+  NOT: [RootWhereInput!]
+}
+
+input RootWhereUniqueInput {
+  id: ID
+  prevId: ID
+}
+
 type Subscription {
   link(where: LinkSubscriptionWhereInput): LinkSubscriptionPayload
+  root(where: RootSubscriptionWhereInput): RootSubscriptionPayload
   user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
   vote(where: VoteSubscriptionWhereInput): VoteSubscriptionPayload
 }
@@ -378,6 +620,11 @@ input UserCreateInput {
   password: String!
   links: LinkCreateManyWithoutPostedByInput
   votes: VoteCreateManyWithoutUserInput
+}
+
+input UserCreateOneInput {
+  create: UserCreateInput
+  connect: UserWhereUniqueInput
 }
 
 input UserCreateOneWithoutLinksInput {
@@ -447,6 +694,14 @@ input UserSubscriptionWhereInput {
   NOT: [UserSubscriptionWhereInput!]
 }
 
+input UserUpdateDataInput {
+  name: String
+  email: String
+  password: String
+  links: LinkUpdateManyWithoutPostedByInput
+  votes: VoteUpdateManyWithoutUserInput
+}
+
 input UserUpdateInput {
   name: String
   email: String
@@ -459,6 +714,13 @@ input UserUpdateManyMutationInput {
   name: String
   email: String
   password: String
+}
+
+input UserUpdateOneRequiredInput {
+  create: UserCreateInput
+  update: UserUpdateDataInput
+  upsert: UserUpsertNestedInput
+  connect: UserWhereUniqueInput
 }
 
 input UserUpdateOneRequiredWithoutVotesInput {
@@ -489,6 +751,11 @@ input UserUpdateWithoutVotesDataInput {
   email: String
   password: String
   links: LinkUpdateManyWithoutPostedByInput
+}
+
+input UserUpsertNestedInput {
+  update: UserUpdateDataInput!
+  create: UserCreateInput!
 }
 
 input UserUpsertWithoutLinksInput {

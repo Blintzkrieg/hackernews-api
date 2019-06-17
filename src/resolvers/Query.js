@@ -24,6 +24,29 @@ async function feed(parent, args, context, info) {
   }
 }
 
+// async function roots(parent, args, context, info) {
+//
+//   const where = {}
+//   let roots = await context.prisma.roots({
+//     where,
+//   })
+//   roots = roots ? roots : []
+//   return {
+//     roots
+//   }
+// }
+//
+  async function roots(parent, args, context, info) {
+    let roots = await context.prisma.roots({
+      where: {
+      },
+    })
+    console.log("Roots")
+    console.log(roots)
+    return roots
+  }
+
 module.exports = {
   feed,
+  roots
 }
