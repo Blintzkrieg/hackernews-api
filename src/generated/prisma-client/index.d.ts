@@ -482,7 +482,6 @@ export interface UserCreateWithoutVotesInput {
 
 export type RootWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
-  prevId?: Maybe<ID_Input>;
 }>;
 
 export interface LinkCreateManyWithoutPostedByInput {

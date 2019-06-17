@@ -30,6 +30,6 @@ type Root {
   nicodemus: String!
   english: String!
   active: String!
-  prevId: ID! @unique
+  prevId: ID!
   user: User!
 }

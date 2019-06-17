@@ -588,7 +588,6 @@ input RootWhereInput {
 
 input RootWhereUniqueInput {
   id: ID
-  prevId: ID
 }
 
 type Subscription {
